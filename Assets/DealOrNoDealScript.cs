@@ -37,7 +37,7 @@ public class DealOrNoDealScript : MonoBehaviour
     private bool isGoodDeal;
     private int goodDealsMade = 0;
 
-    public void Awake()
+    private void ModuleActivated()
     {
         this.moduleId = moduleIdCounter++;
 
@@ -45,6 +45,7 @@ public class DealOrNoDealScript : MonoBehaviour
 
         this.ButtonDeal.OnInteract += () => { ButtonDealPress(); return false; };
         this.ButtonRenew.OnInteract += () => { ButtonRenewPress(); return false; };
+
     }
 
     private void ButtonRenewPress()
@@ -83,16 +84,10 @@ public class DealOrNoDealScript : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        this.DealDisplayText.text = "";
+        GetComponent<KMBombModule>().OnActivate += ModuleActivated;
     }
 
     private void Log(string message)
@@ -102,7 +97,7 @@ public class DealOrNoDealScript : MonoBehaviour
 
     private void RenewDeal() // TODO discount if solved module number is uneven? with led
     {
-        bool makeGoodDeal = rand.Next(0, 2) == 1;
+        bool makeGoodDeal = rand.NextDouble() > 0.5;
 
         Log("Attempting to generate " + (makeGoodDeal ? "good" : "bad") + " deal.");
 
