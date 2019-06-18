@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 114907941559885172}
   - component: {fileID: 114878692581811974}
   - component: {fileID: 114102023130756034}
-  - component: {fileID: 114682209884129808}
+  - component: {fileID: 114049216629910904}
   m_Layer: 0
-  m_Name: DealOrNoDealModule
+  m_Name: TheDealmakerModule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -824,6 +824,22 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
+--- !u!114 &114049216629910904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1147090706249940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdb5517278d16524390f00de21fbb3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 114276615121930812}
+  BombInfo: {fileID: 114907941559885172}
+  ButtonDeal: {fileID: 114611528619955220}
+  ButtonRenew: {fileID: 114641666839865962}
+  DealDisplayText: {fileID: 102771934815503970}
 --- !u!114 &114102023130756034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -992,22 +1008,6 @@ MonoBehaviour:
   AllowSelectionWrapY: 0
   ForceSelectionHighlight: 0
   ForceInteractionHighlight: 0
---- !u!114 &114682209884129808
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1147090706249940}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdb5517278d16524390f00de21fbb3d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Audio: {fileID: 114276615121930812}
-  BombInfo: {fileID: 114907941559885172}
-  ButtonDeal: {fileID: 114611528619955220}
-  ButtonRenew: {fileID: 114641666839865962}
-  DealDisplayText: {fileID: 102771934815503970}
 --- !u!114 &114795082820129076
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1071,8 +1071,8 @@ MonoBehaviour:
   m_Script: {fileID: -119419473, guid: 45b809be76fd7a3468b6f517bced6f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ModuleType: dealOrNoDeal
-  ModuleDisplayName: Deal or no Deal
+  ModuleType: thedealmaker
+  ModuleDisplayName: The Dealmaker
   RequiresTimerVisibility: 1
 --- !u!114 &114907941559885172
 MonoBehaviour:

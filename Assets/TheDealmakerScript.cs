@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class DealOrNoDealScript : MonoBehaviour
+public class TheDealmakerScript : MonoBehaviour
 {
 
     public KMAudio Audio;
