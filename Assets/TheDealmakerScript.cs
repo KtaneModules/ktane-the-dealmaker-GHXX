@@ -21,7 +21,8 @@ public class TheDealmakerScript : MonoBehaviour
     private char nbsp = ' ';
 
     private const int displayTextLineLength = 19;
-    private const int goodDealsToPass = 4;
+    private const int goodDealsToPass = 2;
+    private const int badDealsToAllowSingleGoodDealPass = 1;
 
     private static System.Random rand = new System.Random();
 
@@ -85,6 +86,7 @@ public class TheDealmakerScript : MonoBehaviour
     };
 
     private bool isGoodDeal;
+    private int badDealsEncountered = 0; // enounter a bad deal and then make a good deal to win, or make 2 good deals
     private int goodDealsMade = 0;
     private string displayText = "";
 
@@ -134,7 +136,7 @@ public class TheDealmakerScript : MonoBehaviour
         }
         else
         {
-            if (++this.goodDealsMade >= goodDealsToPass)
+            if (++this.goodDealsMade >= goodDealsToPass || this.badDealsEncountered > badDealsToAllowSingleGoodDealPass) // pass if enough good deals were made, or if one bad and one good was made.
             {
                 this.moduleSolved = true;
                 ClearDisplay(true); // clear display fast
@@ -281,6 +283,8 @@ public class TheDealmakerScript : MonoBehaviour
 
         this.displayText = wrappedDisplayText; // slow write
         Log("Deal is " + (this.isGoodDeal ? "good" : "bad"));
+        if (!this.isGoodDeal)
+            this.badDealsEncountered++;
     }
 }
 
