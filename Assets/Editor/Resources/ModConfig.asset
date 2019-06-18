@@ -11,10 +11,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615501dbe4f3fe94fbf4b564abb10237, type: 3}
   m_Name: ModConfig
   m_EditorClassIdentifier: 
-  id: dealOrNoDeal
-  title: Deal or no Deal
+  id: theDealmaker
+  title: The Dealmaker
   author: GHXX
-  description: 
+  description: Adds a module which is all about making good deals with different currencies
+    and items. Are you the best dealmaker?
   version: 1.0
   outputFolder: build
-  previewImage: {fileID: 0}
+  previewImage: {fileID: 2800000, guid: 9396fa11d597c3544aa05b8ef57a3522, type: 3}
