@@ -26,7 +26,7 @@
                     <p>On the module you will find two buttons as shown in the image to the right.<br>
 					Pressing the <code>DEAL!</code>-button states that the current deal is good. If the deal is not good then a strike will be added.<br>
 					The other button will make the module look for a new deal.<br><br>
-					Since the bomb-creator seems to care about money, the goal appears to make a few good deals.
+					Since the bomb-creator seems to care about money, the goal appears to be making a few good deals.
 					</p>
                    
                     <h3>How to identify good deals:</h3>
@@ -42,7 +42,7 @@
 							</ol>
 						</li>
                         <li>Once you got the values, you need to find out if you can make profit by accepting the deal, which you can do by calculating the result of the following boolean expression:<br>
-							<code>IsDealGood = isBuyingDeal &oplus; <br>(amount * unitValue * itemValue &lt; moneyAmount * currencyValue)</code><br>
+							<code>isDealGood = isBuyingDeal &oplus; <br>(amount * unitValue * itemValue &lt; moneyAmount * currencyValue)</code><br>
 							If the result is <code>true</code> then press the <code>DEAL!</code>-button, otherwise request a new deal.
 						</li>
                     </ol>
