@@ -1073,7 +1073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ModuleType: thedealmaker
   ModuleDisplayName: The Dealmaker
-  RequiresTimerVisibility: 1
+  RequiresTimerVisibility: 0
 --- !u!114 &114907941559885172
 MonoBehaviour:
   m_ObjectHideFlags: 1
