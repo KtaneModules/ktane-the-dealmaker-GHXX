@@ -116,8 +116,10 @@ public class TheDealmakerScript : MonoBehaviour
         if (this.moduleSolved || this.textIsStillUpdating)
             return;
 
-        StartCoroutine(DoButtonPressAndRelease(this.ButtonRenew));
+        if (this.isGoodDeal)
+            GetComponent<KMBombModule>().HandleStrike();
 
+        StartCoroutine(DoButtonPressAndRelease(this.ButtonRenew));
         RenewDeal();
     }
 
@@ -167,7 +169,7 @@ public class TheDealmakerScript : MonoBehaviour
     }
 
     float i = 0;
-    const int framesPerUpdate = 10;
+    const int framesPerUpdate = 5;
     bool textIsStillUpdating = false;
     public void Update()
     {
@@ -245,7 +247,7 @@ public class TheDealmakerScript : MonoBehaviour
 
         this.isGoodDeal = makeGoodDeal;
 
-        string displayText = (isThisASellDeal ? "Sell " : "Buy ") + qty + " " + (qty != 1 ? unit.unitNamePlural : unit.unitName) + " " + (qty == 1 && unit.unitValue == 1 ? purchaseItem.friendlyName : purchaseItem.pluralFriendlyName) + " for " + totalPrice + this.nbsp + currency.currencyName + ".";
+        string displayText = (isThisASellDeal ? "Sell " : "Buy ") + qty + " " + (qty != 1 ? unit.unitNamePlural : unit.unitName) + (unit.unitName == "" ? "" : " ") + (qty == 1 && unit.unitValue == 1 ? purchaseItem.friendlyName : purchaseItem.pluralFriendlyName) + " for " + totalPrice + this.nbsp + currency.currencyName + ".";
 
 
         string wrappedDisplayText = "";
