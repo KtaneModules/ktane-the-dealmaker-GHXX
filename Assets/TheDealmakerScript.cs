@@ -288,12 +288,14 @@ public class TheDealmakerScript : MonoBehaviour
         switch (lowered)
         {
             case "deal":
-                ButtonDealPress();
-                yield break;
+                yield return null;
+                yield return new[] { ButtonDeal };
+                break;
 
             case "nodeal":
-                ButtonDealPress();
-                yield break;
+                yield return null;
+                yield return new[] { ButtonRenew };
+                break;
 
             default:
                 yield break;
