@@ -9,7 +9,6 @@ public class TheDealmakerScript : MonoBehaviour
 
     public KMAudio Audio;
     public KMBombInfo BombInfo;
-    public KMRuleSeedable RuleSeedable;
 
     public KMSelectable ButtonDeal;
     public KMSelectable ButtonRenew;
@@ -23,7 +22,7 @@ public class TheDealmakerScript : MonoBehaviour
 
     private const int displayTextLineLength = 19;
 
-    private MonoRandom rand = null;
+    private readonly MonoRandom rand = new MonoRandom();
 
     private static readonly List<DealItem> PriceList = new List<DealItem>()
     {
@@ -152,8 +151,7 @@ public class TheDealmakerScript : MonoBehaviour
 
     // Use this for initialization
     public void Start()
-    {
-        this.rand = this.RuleSeedable.GetRNG();
+    {        
         Log("Initialized with seed: " + this.rand.Seed);
         this.DealDisplayText.text = ""; // fastclear
         GetComponent<KMBombModule>().OnActivate += ModuleActivated;
@@ -282,7 +280,6 @@ public class TheDealmakerScript : MonoBehaviour
 
     //twitch plays
     protected readonly string TwitchHelpMessage = @"!{0} deal [Presses the DEAL!-button] | !{0} nodeal [Fetches a new deal]";
-
 
     protected IEnumerator ProcessTwitchCommand(string command)
     {
