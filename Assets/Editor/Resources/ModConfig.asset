@@ -14,8 +14,10 @@ MonoBehaviour:
   id: theDealmaker
   title: The Dealmaker
   author: GHXX
-  description: Adds a module which is all about making good deals with different currencies
-    and items. Are you the best dealmaker?
+  description: 'Adds a module which is all about making good deals with different
+    currencies and items.
+
+    Now it''s your turn to make the right deals.'
   version: 1.0
   outputFolder: build
   previewImage: {fileID: 2800000, guid: 9396fa11d597c3544aa05b8ef57a3522, type: 3}

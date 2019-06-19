@@ -22,7 +22,7 @@ public class TheDealmakerScript : MonoBehaviour
 
     private const int displayTextLineLength = 19;
 
-    private readonly MonoRandom rand = new MonoRandom();
+    private static readonly MonoRandom rand = new MonoRandom();
 
     private static readonly List<DealItem> PriceList = new List<DealItem>()
     {
@@ -151,8 +151,8 @@ public class TheDealmakerScript : MonoBehaviour
 
     // Use this for initialization
     public void Start()
-    {        
-        Log("Initialized with seed: " + this.rand.Seed);
+    {
+        Log("Initialized with seed: " + rand.Seed);
         this.DealDisplayText.text = ""; // fastclear
         GetComponent<KMBombModule>().OnActivate += ModuleActivated;
     }
@@ -196,7 +196,7 @@ public class TheDealmakerScript : MonoBehaviour
             Log("Last minute deal! Bonus odds: " + (lastMinuteOdds * 100).ToString("N2") + "%");
 
         var chanceForBadDeal = Math.Pow(0.5, this.consecutiveBadDealAmount * 0.5) - lastMinuteOdds;
-        bool makeGoodDeal = this.rand.NextDouble() > chanceForBadDeal; // 50% chance for a good deal at first. Incrases the more bad deals were encountered. Decreases on good deal.
+        bool makeGoodDeal = rand.NextDouble() > chanceForBadDeal; // 50% chance for a good deal at first. Incrases the more bad deals were encountered. Decreases on good deal.
 
 
         if (!makeGoodDeal)
@@ -214,16 +214,16 @@ public class TheDealmakerScript : MonoBehaviour
         double upperLimit = 1.2;
         double lowerLimit = 0.8;
 
-        double factor = this.rand.NextDouble() * (upperLimit - lowerLimit) + lowerLimit;
+        double factor = rand.NextDouble() * (upperLimit - lowerLimit) + lowerLimit;
 
         double newUnitPrice = purchaseItem.value / currency.currencyValue;
 
         double qty = 0;
 
         if (purchaseItem.countable)
-            qty = this.rand.Next(1, 16);
+            qty = rand.Next(1, 16);
         else
-            qty = Math.Round(this.rand.NextDouble() * 99.5 + 0.5, 2);
+            qty = Math.Round(rand.NextDouble() * 99.5 + 0.5, 2);
 
         double totalPrice = Math.Round(newUnitPrice * qty * unit.unitValue * factor, 2);
 
@@ -304,7 +304,7 @@ public class TheDealmakerScript : MonoBehaviour
 
     private T PickSeededRandom<T>(List<T> source)
     {
-        return source[this.rand.Next(0, source.Count)];
+        return source[rand.Next(0, source.Count)];
     }
 }
 
