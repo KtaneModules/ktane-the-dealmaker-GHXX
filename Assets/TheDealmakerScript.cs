@@ -18,13 +18,11 @@ public class TheDealmakerScript : MonoBehaviour
     static int moduleIdCounter = 1;
     int moduleId;
     private bool moduleSolved;
-    private char nbsp = ' ';
+    private const char nbsp = ' ';
 
     private const int displayTextLineLength = 19;
-    private const int goodDealsToPass = 2;
-    private const int badDealsToAllowSingleGoodDealPass = 1;
 
-    private static System.Random rand = new System.Random();
+    private static readonly System.Random rand = new System.Random();
 
     private static readonly List<DealItem> PriceList = new List<DealItem>()
     {
@@ -86,8 +84,6 @@ public class TheDealmakerScript : MonoBehaviour
     };
 
     private bool isGoodDeal;
-    private int badDealsEncountered = 0; // enounter a bad deal and then make a good deal to win, or make 2 good deals
-    private int goodDealsMade = 0;
     private string displayText = "";
 
     private void ModuleActivated()
@@ -138,18 +134,10 @@ public class TheDealmakerScript : MonoBehaviour
         }
         else
         {
-            if (++this.goodDealsMade >= goodDealsToPass || this.badDealsEncountered > badDealsToAllowSingleGoodDealPass) // pass if enough good deals were made, or if 2 bad and one good was made.
-            {
-                this.moduleSolved = true;
-                ClearDisplay(true); // clear display fast
+            this.moduleSolved = true;
+            ClearDisplay(true); // clear display fast
 
-                GetComponent<KMBombModule>().HandlePass();
-            }
-            else
-            {
-                ClearDisplay(false); // clear display slowly
-                RenewDeal();
-            }
+            GetComponent<KMBombModule>().HandlePass();
         }
     }
 
@@ -247,7 +235,7 @@ public class TheDealmakerScript : MonoBehaviour
 
         this.isGoodDeal = makeGoodDeal;
 
-        string displayText = (isThisASellDeal ? "Sell " : "Buy ") + qty + " " + (qty != 1 ? unit.unitNamePlural : unit.unitName) + (unit.unitName == "" ? "" : " ") + (qty == 1 && unit.unitValue == 1 ? purchaseItem.friendlyName : purchaseItem.pluralFriendlyName) + " for " + totalPrice + this.nbsp + currency.currencyName + ".";
+        string displayText = (isThisASellDeal ? "Sell " : "Buy ") + qty + " " + (qty != 1 ? unit.unitNamePlural : unit.unitName) + (unit.unitName == "" ? "" : " ") + (qty == 1 && unit.unitValue == 1 ? purchaseItem.friendlyName : purchaseItem.pluralFriendlyName) + " for " + totalPrice + nbsp + currency.currencyName + ".";
 
 
         string wrappedDisplayText = "";
@@ -285,10 +273,35 @@ public class TheDealmakerScript : MonoBehaviour
 
         this.displayText = wrappedDisplayText; // slow write
         Log("Deal is " + (this.isGoodDeal ? "good" : "bad"));
-        if (!this.isGoodDeal)
-            this.badDealsEncountered++;
     }
+
+
+    //twitch plays
+#pragma warning disable IDE0051
+    private readonly string TwitchHelpMessage = @"!{0} deal [Presses the DEAL!-button] | !{0} nodeal [Fetches a new deal]";
+
+
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        var lowered = command.ToLowerInvariant().Replace(" ", null).TrimEnd('!', '.');
+
+        switch (lowered)
+        {
+            case "deal":
+                ButtonDealPress();
+                yield break;
+
+            case "nodeal":
+                ButtonDealPress();
+                yield break;
+
+            default:
+                yield break;
+        }
+    }
+#pragma warning restore IDE0051
 }
+
 
 internal class Currency
 {
