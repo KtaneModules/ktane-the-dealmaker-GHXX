@@ -51,7 +51,7 @@ public class TheDealmakerScript : MonoBehaviour
         new Unit("kilogram of", "kilograms of", 1, false),
         new Unit("stone weight of", "stone weights of", 6.35029318f, false),
         new Unit("Babylonian talent of", "Babylonian talents of", 30.2f, false),
-        new Unit("zentner of", "zentner of", 50, false),
+        new Unit("hundredweight of", "hundredweights of", 50, false),
 
 
         // amount
