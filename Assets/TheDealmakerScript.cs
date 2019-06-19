@@ -183,7 +183,7 @@ public class TheDealmakerScript : MonoBehaviour
 
     private void Log(string message)
     {
-        Debug.Log("[DealOrNoDeal #" + this.moduleId + "] " + message);
+        Debug.Log("[TheDealmaker #" + this.moduleId + "] " + message);
     }
 
     int consecutiveBadDealAmount = 2;
@@ -272,7 +272,7 @@ public class TheDealmakerScript : MonoBehaviour
         }
 
         this.displayText = wrappedDisplayText; // slow write
-        Log("Deal is " + (this.isGoodDeal ? "good" : "bad"));
+        Log("Deal is " + (this.isGoodDeal ? "good" : "bad") + ". The deal is: " + displayText);
     }
 
 
@@ -289,12 +289,12 @@ public class TheDealmakerScript : MonoBehaviour
         {
             case "deal":
                 yield return null;
-                yield return new[] { ButtonDeal };
+                yield return new[] { this.ButtonDeal };
                 break;
 
             case "nodeal":
                 yield return null;
-                yield return new[] { ButtonRenew };
+                yield return new[] { this.ButtonRenew };
                 break;
 
             default:
