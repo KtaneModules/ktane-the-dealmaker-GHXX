@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -33,16 +33,17 @@
                     <ol>
                         <li>Every deal contains the following things: 
 							<ol>
-								<li>The kind of deal, either BUY or SELL.</li>
-								<li>A number representing the quantity.</li>
-								<li>An unit, listed in the units-table below.</li>
-								<li>The value of what is being traded, from the table below.</li>
-								<li>The amount of money for which the item is exchanged.</li>
-								<li>And lastly, the value of the currency that is used, listed in the table below.</li>
+								<li>The kind of deal, either BUY or SELL (<code>isBuyingDeal = true</code> for BUY).</li>
+								<li>A number representing the quantity (<code>amount</code>).</li>
+								<li>An unit, listed in the units-table below (<code>unitValue</code>).</li>
+								<li>The value of what is being traded, from the table below (<code>itemValue</code>).</li>
+								<li>The amount of money for which the item is exchanged (<code>moneyAmount</code>).</li>
+								<li>And lastly, the value of the currency that is used, listed in the table below (<code>currencyValue</code>).</li>
 							</ol>
 						</li>
                         <li>Once you got the values, you need to find out if you can make profit by accepting the deal.<br>
-							To do this, think about whether you are buying <code>/</code> selling an item for more or less than it's actual value.
+							<code>isDealGood = isBuyingDeal &oplus; <br>(amount * unitValue * itemValue &lt; moneyAmount * currencyValue)</code><br>
+							If the result is <code>true</code> then press the <code>DEAL!</code>-button, otherwise request a new deal.
 						</li>
                     </ol>
 					
