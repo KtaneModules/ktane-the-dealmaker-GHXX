@@ -279,12 +279,12 @@ public class TheDealmakerScript : MonoBehaviour
     }
 
 
+
     //twitch plays
-#pragma warning disable IDE0051
-    private readonly string TwitchHelpMessage = @"!{0} deal [Presses the DEAL!-button] | !{0} nodeal [Fetches a new deal]";
+    protected readonly string TwitchHelpMessage = @"!{0} deal [Presses the DEAL!-button] | !{0} nodeal [Fetches a new deal]";
 
 
-    IEnumerator ProcessTwitchCommand(string command)
+    protected IEnumerator ProcessTwitchCommand(string command)
     {
         var lowered = command.ToLowerInvariant().Replace(" ", null).TrimEnd('!', '.');
 
@@ -304,7 +304,6 @@ public class TheDealmakerScript : MonoBehaviour
                 yield break;
         }
     }
-#pragma warning restore IDE0051
 
     private T PickSeededRandom<T>(List<T> source)
     {
