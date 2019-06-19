@@ -138,7 +138,7 @@ public class TheDealmakerScript : MonoBehaviour
         }
         else
         {
-            if (++this.goodDealsMade >= goodDealsToPass || this.badDealsEncountered > badDealsToAllowSingleGoodDealPass) // pass if enough good deals were made, or if one bad and one good was made.
+            if (++this.goodDealsMade >= goodDealsToPass || this.badDealsEncountered > badDealsToAllowSingleGoodDealPass) // pass if enough good deals were made, or if 2 bad and one good was made.
             {
                 this.moduleSolved = true;
                 ClearDisplay(true); // clear display fast
