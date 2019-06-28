@@ -36,7 +36,7 @@ public class TheDealmakerScript : MonoBehaviour
         new DealItem("cat", "cats", 10.4f, true),
         new DealItem("fake gold ingot with copper core", "fake gold ingots with copper core", 12.8f, true),
         new DealItem("fluffy alpaca", "fluffy alpacas", 20.5f, true),
-        new DealItem("abort-button", "abort-buttons", 26f, true),
+        new DealItem("abort button", "abort buttons", 26f, true),
         new DealItem("empty bomb case", "empty bomb cases", 35f, true),
         new DealItem("old phone", "old phones", 48f, true),
         new DealItem("hypercube", "hypercubes", 64.7f, true),
