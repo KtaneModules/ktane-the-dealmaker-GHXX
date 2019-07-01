@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using Rnd = UnityEngine.Random;
+
 public class TheDealmakerScript : MonoBehaviour
 {
-
     public KMAudio Audio;
     public KMBombInfo BombInfo;
 
@@ -14,15 +15,12 @@ public class TheDealmakerScript : MonoBehaviour
     public KMSelectable ButtonRenew;
     public TextMesh DealDisplayText;
 
-
     static int moduleIdCounter = 1;
     int moduleId;
     private bool moduleSolved;
     private const char nbsp = ' ';
 
     private const int displayTextLineLength = 19;
-
-    private static readonly MonoRandom rand = new MonoRandom();
 
     private static readonly List<DealItem> PriceList = new List<DealItem>()
     {
@@ -152,7 +150,6 @@ public class TheDealmakerScript : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
-        Log("Initialized with seed: " + rand.Seed);
         this.DealDisplayText.text = ""; // fastclear
         GetComponent<KMBombModule>().OnActivate += ModuleActivated;
     }
@@ -196,7 +193,7 @@ public class TheDealmakerScript : MonoBehaviour
             Log("Last minute deal! Bonus odds: " + (lastMinuteOdds * 100).ToString("N2") + "%");
 
         var chanceForBadDeal = Math.Pow(0.5, this.consecutiveBadDealAmount * 0.5) - lastMinuteOdds;
-        bool makeGoodDeal = rand.NextDouble() > chanceForBadDeal; // 50% chance for a good deal at first. Incrases the more bad deals were encountered. Decreases on good deal.
+        bool makeGoodDeal = Rnd.Range(0f, 1f) > chanceForBadDeal; // 50% chance for a good deal at first. Incrases the more bad deals were encountered. Decreases on good deal.
 
 
         if (!makeGoodDeal)
@@ -214,16 +211,16 @@ public class TheDealmakerScript : MonoBehaviour
         double upperLimit = 1.2;
         double lowerLimit = 0.8;
 
-        double factor = rand.NextDouble() * (upperLimit - lowerLimit) + lowerLimit;
+        double factor = Rnd.Range((float) lowerLimit, (float) upperLimit);
 
         double newUnitPrice = purchaseItem.value / currency.currencyValue;
 
         double qty = 0;
 
         if (purchaseItem.countable)
-            qty = rand.Next(1, 16);
+            qty = Rnd.Range(1, 16);
         else
-            qty = Math.Round(rand.NextDouble() * 99.5 + 0.5, 2);
+            qty = Math.Round(Rnd.Range(.5f, 100f), 2);
 
         double totalPrice = Math.Round(newUnitPrice * qty * unit.unitValue * factor, 2);
 
@@ -304,7 +301,7 @@ public class TheDealmakerScript : MonoBehaviour
 
     private T PickSeededRandom<T>(List<T> source)
     {
-        return source[rand.Next(0, source.Count)];
+        return source[Rnd.Range(0, source.Count)];
     }
 }
 
