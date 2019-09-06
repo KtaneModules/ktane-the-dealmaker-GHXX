@@ -45,7 +45,7 @@ public class TheDealmakerScript : MonoBehaviour
         // weight
         new Unit("gram of", "grams of", 0.001f, false),
         new Unit("esterling of", "esterling of", 0.001415f, false),
-        new Unit("pennweight of", "pennweights of", 0.00155517384f, false),
+        new Unit("pennyweight of", "pennyweights of", 0.00155517384f, false),
         new Unit("kilogram of", "kilograms of", 1, false),
         new Unit("stoneweight of", "stoneweights of", 6.35029318f, false),
         new Unit("Babylonian talent of", "Babylonian talents of", 30.2f, false),
